@@ -65,6 +65,7 @@ target/
 
 # Pycharm
 .idea
+/venv
 
 # VS Code
 .vscode/
@@ -77,6 +78,7 @@ target/
 
 # exclude data from source control by default
 /data/
+*.csv
 
 # Mac OS-specific storage files
 .DS_Store
