@@ -1,6 +1,6 @@
 from collections import Counter
 
-import enchant
+# import enchant
 import numpy as np
 from nltk import everygrams
 
@@ -105,7 +105,7 @@ def longest_word(query):
     :param query: Raw DNS query
     :return: The longest meaningful substring along all the subdomains
     """
-    dct = enchant.Dict("en-US")
+    # dct = enchant.Dict("en-US")
     subdomains = query.split(".")[:-2]
 
     if len(subdomains) == 0:
@@ -114,8 +114,8 @@ def longest_word(query):
     all_substrings = []
     for label in subdomains:
         if not all(map(str.isnumeric, label)):
-            substrings = [[''.join(ngram), len(''.join(ngram))] for ngram in everygrams(label) if
-                          dct.check(''.join(ngram)) and all(map(str.isalpha, ngram))]
+            substrings = [[''.join(ngram), len(''.join(ngram))] for ngram in everygrams(label) if #dct.check(''.join(ngram)) and
+                          all(map(str.isalpha, ngram))]
             all_substrings.extend(substrings)
 
     if len(all_substrings) == 0:
@@ -159,7 +159,7 @@ def extract_features(query):
     :param query: Raw DNS query
     :return: An array of all the features extracted from the DNS query
     """
-    features = [FQDN_count(query), subdomain_length(query), upper(query), lower(query), numeric(query), entropy(query),
+    features = [FQDN_count(query), subdomain_length(query), upper(query), lower(query), numeric(query), int(entropy(query)),
                 special(query), labels(query), labels_max(query), labels_average(query), longest_word(query),
                 sld(query), length(query), subdomain(query)]
 
